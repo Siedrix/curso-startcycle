@@ -1,0 +1,20 @@
+<html>
+<head>
+	<script type="text/javascript" src="/eventemitter2.js"></script>
+	<script type="text/javascript">
+		var eventEmitter2 = new EventEmitter2({
+			wildcard: true,
+			delimiter: '::'
+		});
+
+		eventEmitter2.on('foo', function () {
+			console.log('foo has been emited');
+		});
+
+		eventEmitter2.emit('foo')
+	</script>
+</head>
+<body>
+	<a href="https://github.com/hij1nx/EventEmitter2">EventEmitter2</a>
+</body>
+</html>

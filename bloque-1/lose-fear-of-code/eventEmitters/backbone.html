@@ -1,0 +1,16 @@
+<html>
+<head>
+	<script type="text/javascript" src="/underscore.js"></script>
+	<script type="text/javascript" src="/backbone.js"></script>
+	<script type="text/javascript">
+		Backbone.Events.on('foo', function(){
+			console.log('foo was been trigger')
+		});
+
+		Backbone.Events.trigger('foo');
+	</script>
+</head>
+<body>
+	<a href="http://backbonejs.org/docs/backbone.html#section-15">Annotated Source</a>
+</body>
+</html>

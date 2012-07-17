@@ -1,0 +1,25 @@
+<html>
+<head>
+	<script type="text/javascript" src="/jquery-1.4.2.js"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		$('body').bind("setData", function(){
+			console.log('reading set data');
+		});
+
+		$('body').bind("setData.app", function(){
+			console.log('reading set data on name space app');
+		});
+
+		$('body').data('lol'     , true  );
+		$('body').data('lol.app' , false );
+		$('body').data('wtf.app' , true  );
+		//$('body').trigger("setData", {lol: false});
+	});
+	</script>
+</head>
+<body>
+
+</body>
+</html>
