@@ -15,3 +15,9 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 
 - [Crockford on JavaScript - Act III: Function the Ultimate](http://www.youtube.com/watch?v=ya4UHuXNygM)
 - [Immediately-Invoked Function Expression](http://benalman.com/news/2010/11/immediately-invoked-function-expression/)
+
+### Clase 3:
+- [Crockford on JavaScript - Scene 6: Loopage](http://www.youtube.com/watch?v=QgwSUtYSUqA)
+- [Nicholas Zakas: Scalable JavaScript Application Architecture](http://www.youtube.com/watch?v=vXjVFPosQHw)
+- [Event delegation in JavaScript](http://www.nczonline.net/blog/2009/06/30/event-delegation-in-javascript/)
+- [Understanding the Publish/Subscribe Pattern for Greater JavaScript Scalability](http://msdn.microsoft.com/en-us/magazine/hh201955.aspx)

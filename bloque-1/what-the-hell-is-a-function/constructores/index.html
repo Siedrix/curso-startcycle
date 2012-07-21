@@ -3,9 +3,10 @@
 	<script type="text/javascript">
 		var Restaurant = function(config){
 			this.direccion = config.direccion || '';
-			this.comer = function(){
-				return 'mmmm...';
-			}
+		}
+		
+		Restaurant.prototype.comer = function(){
+			return 'mmmm...';
 		}
 
 		var ilDiabolo = new Restaurant({
@@ -14,7 +15,6 @@
 
 		console.log( ilDiabolo );
 		console.log( ilDiabolo.comer() );
-
 		
 		console.log('ilDiabolo instanceof Restaurant == true',ilDiabolo instanceof Restaurant);
 	</script>
