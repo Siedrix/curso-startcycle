@@ -1,0 +1,28 @@
+<html>
+<head>
+    <script type="text/javascript" src="jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="EventEmitter.js"></script>
+    <script type="text/javascript">
+    // Crear clase mesero
+
+    var mesero = Mesero();
+
+    var count = 0;
+    var listener = function(e){
+        console.log('lol', ++count, e);
+    }
+
+    mesero.bind('lol', listener);
+
+    mesero.trigger('lol');
+    mesero.trigger({type:'lol',lol: true});
+
+    mesero.unbind('lol', listener);
+
+    mesero.trigger('lol');
+    </script>
+</head>
+<body>
+
+</body>
+</html>

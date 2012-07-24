@@ -1,0 +1,21 @@
+<html>
+<head>
+	<script type="text/javascript" src="/jquery-1.7.2.js"></script>
+	<script type="text/javascript">
+	var dfd = $.Deferred();
+
+	dfd.done(function(){
+		console.log('this is done');
+	});
+
+	setTimeout(function(){
+		dfd.resolve();
+	}, 5000);
+
+	console.log('Last line of code...');
+	</script>
+</head>
+<body>
+
+</body>
+</html>

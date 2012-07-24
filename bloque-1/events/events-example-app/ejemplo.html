@@ -1,0 +1,82 @@
+<html>
+<head>
+    <script type="text/javascript" src="jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="EventEmitter.js"></script>
+    <script type="text/javascript">
+(function(){
+    var ordenes = {},
+        numeroDeOrdenes = 0;
+
+    window.Mesero = function(){
+        var self = {},
+            listener = {};
+
+        $.extend( self, EventEmitter() );
+
+        self.tomarOrden = function(orden){
+            console.log('Tomando orden:',orden);
+
+            orden.status        = 'generada';
+            orden.numeroDeOrden = numeroDeOrdenes
+            ordenes[numeroDeOrdenes] = orden;
+            numeroDeOrdenes++;
+
+            self.trigger({
+                type  : 'orden generada', 
+                orden : orden
+            });
+        };
+
+        return self;
+    }
+
+    window.Parilla = function(mesero){
+        var self = {},
+            listener = {};
+
+        $.extend( self, EventEmitter() );
+
+        self.cocinarOrden = function(orden){
+            console.log('cocinando orden', orden);
+
+            ordenes[orden.numeroDeOrden].status = orden.status = 'cocinando';
+
+            setTimeout(function(){
+                ordenes[orden.numeroDeOrden].status = orden.status = 'cocinanda';
+
+                console.log('orden cocinada', orden);
+                self.trigger({
+                    type  : 'orden cocinada', 
+                    orden : orden
+                });
+            },1000);
+        }
+
+        return self;
+    }
+
+    var mesero  = Mesero();
+        parilla = Parilla();
+
+    mesero.bind('orden generada', function(e){
+        parilla.cocinarOrden(e.orden);
+    });
+
+    mesero.tomarOrden({
+        tacos  : 2,
+        tortas : 1,
+        lonche : 2
+    });
+
+    mesero.tomarOrden({
+        tortas    : 4,
+        lonche    : 1,
+        refrescos : 4
+    });
+})(window);    
+    </script>
+</head>
+<body>
+
+</body>
+</html>

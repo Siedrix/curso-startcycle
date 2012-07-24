@@ -1,0 +1,42 @@
+<html>
+<head>
+	<script type="text/javascript" src="/jquery-1.7.2.js"></script>
+	<script type="text/javascript">
+    window.Parrilla = function(mesero){
+        var self = {};
+
+        self.cocinarOrden = function(orden){
+        	console.log('empezando a cocinar orden', orden);
+
+			var dfd = $.Deferred();        	
+
+            setTimeout(function(){
+                console.log('orden cocinada', orden);
+                dfd.resolve();
+            },1000);
+
+            return dfd;
+        }
+
+        return self;
+    }
+
+    var parrilla = Parrilla()
+
+    var dfd = parrilla.cocinarOrden({
+    	tacos  : 2,
+    	tortas : 1
+    });
+
+	dfd.done(function(){
+		parrilla.cocinarOrden({
+	    	burrito : 3
+	    });
+	});
+	
+	</script>
+</head>
+<body>
+
+</body>
+</html>
