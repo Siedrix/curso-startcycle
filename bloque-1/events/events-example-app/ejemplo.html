@@ -3,11 +3,11 @@
     <script type="text/javascript" src="jquery-1.7.2.js"></script>
     <script type="text/javascript" src="EventEmitter.js"></script>
     <script type="text/javascript">
-(function(){
+(function(global){
     var ordenes = {},
         numeroDeOrdenes = 0;
 
-    window.Mesero = function(){
+    global.Mesero = function(){
         var self = {},
             listener = {};
 
@@ -30,7 +30,7 @@
         return self;
     }
 
-    window.Parilla = function(mesero){
+    global.Parilla = function(mesero){
         var self = {},
             listener = {};
 

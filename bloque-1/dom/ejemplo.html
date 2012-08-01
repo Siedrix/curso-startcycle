@@ -1,0 +1,107 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="/jquery.tmpl.js"></script>
+    <script type="text/javascript">
+	var Utils = {
+		// https://gist.github.com/1308368
+		uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
+		store: function( namespace, data ) {
+			if ( arguments.length > 1 ) {
+				return localStorage.setItem( namespace, JSON.stringify( data ) );
+			} else {
+				var store = localStorage.getItem( namespace );
+				return ( store && JSON.parse( store ) ) || [];
+			}
+		}
+	};
+
+	var ToDoList = function (config) {
+		var self   = {};
+			config = config || {};
+
+		self.STORAGE_NAME = 'to-dos';
+
+		self.toDos = Utils.store(self.STORAGE_NAME);
+
+		self.createToDo = function(toDo){
+			toDo.id = toDo.id || Utils.uuid();
+
+			self.toDos.push(toDo);
+			Utils.store( self.STORAGE_NAME, self.toDos );
+		};
+
+		self.updateToDo = function(id, data){
+			self.toDos.forEach(function(todo){ 
+				if(todo.id === id){ 
+					for(var key in data){
+						todo[key] = data[key];
+					}
+				} 
+			});
+
+			Utils.store( self.STORAGE_NAME, self.toDos );
+		};
+
+		self.destroyToDo = function(id){
+			self.toDos = self.toDos.filter(function(todo){ 
+				return todo.id !== id
+			});
+
+			Utils.store( self.STORAGE_NAME, self.toDos );
+		};
+
+		self.empty = function(){
+			self.toDos = [];
+			Utils.store( self.STORAGE_NAME, [] );
+		};
+
+		return self;
+	}
+
+	$(document).ready(function(){
+    	var toDoList = ToDoList();
+
+    	toDoList.empty();
+
+    	var firstItemId  = Utils.uuid();
+    	var secondItemId = Utils.uuid();
+
+    	console.log('to do items:', toDoList.toDos);
+
+		toDoList.createToDo({
+			id: firstItemId,
+			title: 'first',
+			completed: false
+		});
+
+		console.log('to do items:', toDoList.toDos);
+
+		toDoList.createToDo({
+			id: secondItemId,
+			title: 'second',
+			completed: false
+		});
+
+		console.log('to do items:', toDoList.toDos);
+
+		toDoList.updateToDo(firstItemId, {
+			completed : true
+		});
+
+		console.log('to do items:', toDoList.toDos);
+
+		toDoList.destroyToDo(secondItemId);
+
+		console.log('to do items:', toDoList.toDos);
+
+    	window.toDoList = toDoList;
+	});
+
+    </script>
+</head>
+<body>
+    <h3>Generar un ToDo con jquery</h3>
+</body>
+</html>

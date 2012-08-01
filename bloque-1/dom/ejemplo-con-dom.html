@@ -1,0 +1,208 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="base.css">
+    <script type="text/javascript" src="/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="/jquery.tmpl.js"></script>
+    <script type="text/javascript">
+    var Utils = {
+        // https://gist.github.com/1308368
+        uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
+        store: function( namespace, data ) {
+            if ( arguments.length > 1 ) {
+                return localStorage.setItem( namespace, JSON.stringify( data ) );
+            } else {
+                var store = localStorage.getItem( namespace );
+                return ( store && JSON.parse( store ) ) || [];
+            }
+        }
+    };
+
+    var ToDoList = function (config) {
+        var self   = {};
+            config = config || {};
+
+        self.STORAGE_NAME = 'to-dos';
+        self.ENTER_KEY    = 13;
+
+        self.renderTo = config.renderTo;
+        self.toDos    = Utils.store(self.STORAGE_NAME);
+
+        self.createToDo = function(toDo){
+            toDo.id = toDo.id || Utils.uuid();
+
+            self.toDos.push(toDo);
+            Utils.store( self.STORAGE_NAME, self.toDos );
+
+            if(self.$toDoList){
+                $.tmpl( "toDo", toDo ).appendTo( self.$toDos );
+            }
+        };
+
+        self.updateToDo = function(id, data){
+            self.toDos.forEach(function(todo){ 
+                if(todo.id === id){ 
+                    for(var key in data){
+                        todo[key] = data[key];
+                    }
+                } 
+            });
+
+            Utils.store( self.STORAGE_NAME, self.toDos );
+        };
+
+        self.completeToDo = function(id){
+            self.updateToDo(id,{
+                completed: true
+            });
+            self.$toDoList.find("#to-do-"+id).addClass('completed');
+        }
+
+        self.incompleteToDo = function(id){
+            self.updateToDo(id,{
+                completed: false
+            });
+            self.$toDoList.find("#to-do-"+id).removeClass('completed');
+        }
+
+        self.destroyToDo = function(id){
+            self.toDos = self.toDos.filter(function(todo){ 
+                return todo.id !== id
+            });
+
+            Utils.store( self.STORAGE_NAME, self.toDos );
+
+            if(self.$toDoList){
+                self.$toDoList.find("#to-do-"+id).remove();
+            }
+        };
+
+        self.empty = function(){
+            self.toDos = [];
+            Utils.store( self.STORAGE_NAME, [] );
+        };
+
+        self.keyUpHandler = function(e){
+            var $input = $(this),
+                val = $.trim( $input.val() );
+
+            if ( e.which !== self.ENTER_KEY || !val ) {
+                return;
+            }           
+
+            console.log('keyUpHandler', e);
+
+            toDoList.createToDo({
+                id        : Utils.uuid(),
+                title     : val,
+                completed : false
+            });
+            $input.val('');         
+        };
+
+        self.deleteHandler = function(e){
+            var toDoElement = $(e.target).closest('li'),
+                toDoId = toDoElement.attr('to-do-id');
+
+            self.destroyToDo(toDoId);
+        }
+
+        self.toggleHandler = function(e){
+            var toDoElement = $(e.target).closest('li'),
+                toDoId = toDoElement.attr('to-do-id');
+
+            if( $(e.target).is(':checked') ){
+                self.completeToDo(toDoId);
+            }else{
+                self.incompleteToDo(toDoId);
+            }
+        }
+
+        self.toggleAllHandler = function(e){
+            console.log('self', self);
+
+            self.toDos.forEach(function(toDo){
+                var toDoElement = self.$toDos.find("#to-do-"+toDo.id);
+
+                self.updateToDo( toDo.id, {completed: e.target.checked});
+                toDoElement.find('.toggle').prop("checked", e.target.checked);
+                if(e.target.checked){
+                    toDoElement.addClass('completed');
+                }else{
+                    toDoElement.removeClass('completed');
+                }
+            });
+        }
+
+        self.bindEvents = function(){
+            self.$newToDo.on( 'keyup', self.keyUpHandler );
+            self.$toDoList.delegate('.destroy', 'click', self.deleteHandler );
+            self.$toDoList.delegate('.toggle' , 'click', self.toggleHandler );
+            self.$toggleAll.on('click', self.toggleAllHandler)
+        };
+
+        self.render = function(){
+            $.tmpl( "toDoList", {} ).appendTo( self.renderTo );
+
+            //Cache dom
+            self.$element   = $( self.renderTo );
+            self.$toDos     = self.$element.find('#todo-list');
+            self.$newToDo   = self.$element.find('#new-todo');
+            self.$toDoList  = self.$element.find('#todo-list');
+            self.$toggleAll = self.$element.find('#toggle-all');
+
+            self.toDos.forEach(function(toDo){
+                $.tmpl( "toDo", toDo ).appendTo( self.$toDos );
+            });
+        };
+
+        if(self.renderTo){
+            self.render();
+
+            self.bindEvents();
+        }
+
+        return self;
+    }
+
+    $(document).ready(function(){
+        //Definimos los templates
+        $.template( "toDoList", $('#to-do-list-template').html() );
+        $.template( "toDo",     $('#to-do-template').html()      );
+
+        var toDoList = ToDoList({
+            renderTo : '#todoapp'
+        });
+
+        window.toDoList = toDoList;
+    });
+
+    </script>
+</head>
+<body>
+
+    <div id="todoapp">
+        <h1>Generar un ToDo con jquery</h1>
+    </div>
+
+    <script id="to-do-list-template" type="text/jquery-template">
+        <header id="header">    
+            <input id="new-todo" placeholder="Crea una tarea" autofocus="">
+            <input id="toggle-all" type="checkbox">
+        </header>
+        <ul id="todo-list">
+        </ul>
+    </script>
+
+    <script id="to-do-template" type="text/jquery-template">
+        <li id="to-do-${id}" to-do-id="${id}" {{if completed}}class="completed"{{/if}}>
+            <div class="view">
+                <input class="toggle" type="checkbox" {{if completed}}checked="true"{{/if}}>
+                <label>${title}</label>
+                <button class="destroy"></button>
+            </div>
+            <input class="edit" value="">
+        </li>       
+    </script>
+</body>
+</html>

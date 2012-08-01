@@ -5,16 +5,72 @@
     <script type="text/javascript">
     // Crear clase mesero
 
+    var Mesero = function(){
+        var self = EventEmitter();
+        var ordenes = [];
+
+        self.tomarOrden = function(orden){
+            ordenes.push(orden);
+
+            self.trigger({
+                type:'tomeOrden',
+                orden: orden
+            });                   
+        }
+
+        return self;
+    }
+
+
+    var Cocinero = function(){
+        var self=EventEmitter();
+
+        self.cocinar = function(orden){
+
+            self.trigger({
+                type:'cocinanding',
+                orden:orden
+            });
+
+            self.trigger({
+                type:'terminanding',
+                orden:orden
+            });
+        }
+
+        return self;
+    } 
+
     var mesero = Mesero();
+    var ancho = Cocinero();
+
+    mesero.trigger('lol');
 
     var count = 0;
     var listener = function(e){
         console.log('lol', ++count, e);
     }
 
+    ancho.bind('cocinanding',function(evento){
+        console.log('ancho esta cocinando',evento.orden);
+    });
+
+    ancho.bind('terminanding',function(evento){
+        console.log('ancho termino de cocinar',evento.orden);
+    });
+
+    mesero.bind('tomeOrden',function(evento){
+        console.log('acabo de tomar una orden', evento.orden);
+
+        ancho.cocinar(evento.orden);
+    });
+
     mesero.bind('lol', listener);
 
-    mesero.trigger('lol');
+    mesero.tomarOrden({
+        chilaquiles : 4,
+        cerveza : 1
+    });
     mesero.trigger({type:'lol',lol: true});
 
     mesero.unbind('lol', listener);
