@@ -22,3 +22,7 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 - [Event delegation in JavaScript](http://www.nczonline.net/blog/2009/06/30/event-delegation-in-javascript/)
 - [Understanding the Publish/Subscribe Pattern for Greater JavaScript Scalability](http://msdn.microsoft.com/en-us/magazine/hh201955.aspx)
 - [Using Deferreds in jQuery 1.5](http://www.erichynds.com/jquery/using-deferreds-in-jquery/)
+
+### Clase 4
+
+- [The jQuery Divide by Rebecca Murphey](http://jsconf.eu/2010/speaker/the_jquery_divide_by_rebecca_m.html)
