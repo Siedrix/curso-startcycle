@@ -80,6 +80,10 @@
         self.empty = function(){
             self.toDos = [];
             Utils.store( self.STORAGE_NAME, [] );
+            
+            if(self.$toDoList){
+                self.$toDoList.html('');
+            }
         };
 
         self.keyUpHandler = function(e){
@@ -141,6 +145,7 @@
             self.$toggleAll.on('click', self.toggleAllHandler)
         };
 
+        // dblclick
         self.render = function(){
             $.tmpl( "toDoList", {} ).appendTo( self.renderTo );
 
