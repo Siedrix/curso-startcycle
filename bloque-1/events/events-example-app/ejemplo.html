@@ -30,7 +30,7 @@
         return self;
     }
 
-    global.Parilla = function(mesero){
+    global.Taquero = function(mesero){
         var self = {},
             listener = {};
 
@@ -49,17 +49,21 @@
                     type  : 'orden cocinada', 
                     orden : orden
                 });
-            },1000);
+            },50000);
         }
 
         return self;
     }
 
-    var mesero  = Mesero();
-        parilla = Parilla();
+    var mesero  = Mesero(),
+        taquero = Taquero();
 
     mesero.bind('orden generada', function(e){
-        parilla.cocinarOrden(e.orden);
+        taquero.cocinarOrden(e.orden);
+    });
+
+    taquero.bind('orden cocinada', function(e){
+        console.log('Debemos de entregar la orden');
     });
 
     mesero.tomarOrden({

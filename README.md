@@ -26,3 +26,16 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 ### Clase 4
 
 - [The jQuery Divide by Rebecca Murphey](http://jsconf.eu/2010/speaker/the_jquery_divide_by_rebecca_m.html)
+
+### Clase 5:
+
+- [SCALING YOUR JAVASCRIPT APPLICATION](http://addyosmani.com/scalable-javascript-videos/)
+- [TodoMVC](http://addyosmani.github.com/todomvc/)
+
+### Clase 6:
+
+- [Backbone.js: Hacker's Guide](http://dailyjs.com/2012/07/19/mvstar-2/)
+- [Backbone.js](http://backbonejs.org/)
+- [Underscore.js](http://underscorejs.org/)
+- [Javascript Jabber with Jeremy Ashkenas](http://javascriptjabber.com/004-jsj-backbone-js-with-jeremy-ashkenas/)
+
