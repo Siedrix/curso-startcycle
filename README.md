@@ -38,4 +38,4 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 - [Backbone.js](http://backbonejs.org/)
 - [Underscore.js](http://underscorejs.org/)
 - [Javascript Jabber with Jeremy Ashkenas](http://javascriptjabber.com/004-jsj-backbone-js-with-jeremy-ashkenas/)
-
+- [Backbone Boilerplate](https://github.com/tbranyen/backbone-boilerplate)
