@@ -39,3 +39,9 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 - [Underscore.js](http://underscorejs.org/)
 - [Javascript Jabber with Jeremy Ashkenas](http://javascriptjabber.com/004-jsj-backbone-js-with-jeremy-ashkenas/)
 - [Backbone Boilerplate](https://github.com/tbranyen/backbone-boilerplate)
+
+### Clase 7:
+
+- [Knockoutjs Documentation](http://knockoutjs.com/documentation/introduction.html)
+- [Knockoutjs Learn](http://learn.knockoutjs.com/)
+
