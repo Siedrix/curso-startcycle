@@ -19,16 +19,30 @@
     <form data-bind="submit: addGuest">
         <input name="name" placeholder="Quien mas va?"/>
         <button type="submit">Submit</button>
+    </form>
     </div>
     <div data-bind="foreach: guests">
         <div>
             <span data-bind="text: name"></span>
             <span data-bind="click: removeGuest">x</span>
         </div>    
-    </div>    
+    </div>
 </script>
  
 <script type="text/javascript">
+    var Utils = {
+        // https://gist.github.com/1308368
+        uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
+        store: function( namespace, data ) {
+            if ( arguments.length > 1 ) {
+                return localStorage.setItem( namespace, JSON.stringify( data ) );
+            } else {
+                var store = localStorage.getItem( namespace );
+                return ( store && JSON.parse( store ) ) || [];
+            }
+        }
+    };
+
     function Guest(name) {
         this.name = name;
         this.removeGuest = function(guest,e){
@@ -38,27 +52,62 @@
 
     function Event() {
         var event = this;
+
+        event.namespace = "party";
         event.data = { 
-            name    : ko.observable('Party'), 
-            price   : ko.observable(250),
-            items   : ko.observableArray([
-                { name: 'Cerveza'},
-                { name: 'Nachos'}
-            ]),
-            guests  : ko.observableArray([
-                new Guest('hackerosito')
-            ]),
+            name    : ko.observable(''), 
+            price   : ko.observable(0),
+            items   : ko.observableArray([]),
+            guests  : ko.observableArray([]),
             addGuest : function(form){
                 event.data.guests.push(new Guest (form.name.value) );
+
+                event.persist();
                 form.name.value = '';
             }
         };
+
+        event.persist = function(){
+            var json = this.toJson();
+
+            Utils.store(event.namespace, json);
+        }
+
+        event.sync = function(){
+            var data = Utils.store(event.namespace);
+
+            data.name   = data.name   || 'Party';
+            data.price  = data.price  || 0;
+            data.items  = data.items  || [];
+            data.guests = data.guests || [];
+
+            this.data.name(data.name);
+            this.data.price(data.price);
+            this.data.items(data.items);
+
+            data.guests.forEach(function(guestName){
+                event.data.guests.push(new Guest (guestName) );                
+            });
+        }
+
+        event.toJson = function(){
+            var data = {};
+
+            data.guests = this.data.guests().map(function(guest){return guest.name });
+            data.items  = this.data.items();
+            data.name   = this.data.name();
+            data.price  = this.data.price();
+
+            return data;
+        }
     }
 
     window.party = new Event();
+    party.sync();
+
     ko.applyBindings(party, $('#event').get(0) );
 
-    party.data.items.push({name : "Whiskie"});
-    party.data.items.push({name : "Vodka"});
+    // party.data.items.push({name : "Whiskie"});
+    // party.data.items.push({name : "Vodka"});
 </script>
 </body>

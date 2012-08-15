@@ -9,6 +9,8 @@
     <h2>Participants</h2>
     Here are the participants:
     <div data-bind="template: { name: 'person-template', data: data }"></div>
+
+    <input data-bind="value: data.name" type="text"/>
 </div>
  
 <script type="text/html" id="person-template">
@@ -18,8 +20,14 @@
     <div data-bind="foreach: items">
         <div data-bind="text: name"></div>
     </div>    
+    <ul data-bind="foreach: guest">
+        <li>
+            <span data-bind="text:name"></span>
+            <input data-bind="checked:paid" type="checkbox"/>
+        </li>
+    </ul>
 </script>
- 
+
 <script type="text/javascript">
     function Event() {
         this.data = { 
@@ -28,6 +36,10 @@
             items   : ko.observableArray([
                 { name: 'Cerveza'},
                 { name: 'Nachos'}
+            ]),
+            guest   : ko.observableArray([
+                { name: 'Ancho', paid:true},
+                { name: 'Levhita', paid:false}
             ])
         };
     }
@@ -35,6 +47,7 @@
     var event = new Event();
     ko.applyBindings(event, $('#event').get(0) );
 
+    debugger;
     event.data.items.push({name : "Whiskie"});
     event.data.items.push({name : "Vodka"});
 </script>
