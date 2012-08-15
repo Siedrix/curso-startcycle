@@ -1,0 +1,64 @@
+<html>
+<head>
+    <script type='text/javascript' src='jquery-1.7.2.js'></script>
+    <script type='text/javascript' src='knockout-2.1.0.debug.js'></script>
+</head>
+<body>
+
+<div id="event">
+    <div data-bind="template: { name: 'person-template', data: data }"></div>
+</div>
+ 
+<script type="text/html" id="person-template">
+    <h3 data-bind="text: name"></h3>
+    <p>Costo: <span data-bind="text: price"></span></p>
+    <p>Incluye:</p>
+    <div data-bind="foreach: items">
+        <div data-bind="text: name"></div>
+    </div>    
+    <form data-bind="submit: addGuest">
+        <input name="name" placeholder="Quien mas va?"/>
+        <button type="submit">Submit</button>
+    </div>
+    <div data-bind="foreach: guests">
+        <div>
+            <span data-bind="text: name"></span>
+            <span data-bind="click: removeGuest">x</span>
+        </div>    
+    </div>    
+</script>
+ 
+<script type="text/javascript">
+    function Guest(name) {
+        this.name = name;
+        this.removeGuest = function(guest,e){
+            window.party.data.guests.remove(guest);
+        }
+    }
+
+    function Event() {
+        var event = this;
+        event.data = { 
+            name    : ko.observable('Party'), 
+            price   : ko.observable(250),
+            items   : ko.observableArray([
+                { name: 'Cerveza'},
+                { name: 'Nachos'}
+            ]),
+            guests  : ko.observableArray([
+                new Guest('hackerosito')
+            ]),
+            addGuest : function(form){
+                event.data.guests.push(new Guest (form.name.value) );
+                form.name.value = '';
+            }
+        };
+    }
+
+    window.party = new Event();
+    ko.applyBindings(party, $('#event').get(0) );
+
+    party.data.items.push({name : "Whiskie"});
+    party.data.items.push({name : "Vodka"});
+</script>
+</body>

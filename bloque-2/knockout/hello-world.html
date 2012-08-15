@@ -1,0 +1,39 @@
+<html>
+<head>
+    <script type='text/javascript' src='jquery-1.7.2.js'></script>
+    <script type='text/javascript' src='knockout-2.1.0.debug.js'></script>
+</head>
+<body>
+
+<div id="contact">
+    <h2>Participants</h2>
+    Here are the participants:
+    <div data-bind="template: { name: 'person-template', data: buyer }"></div>
+    <div data-bind="template: { name: 'person-template', data: seller }"></div>
+</div>
+ 
+<script type="text/html" id="person-template">
+    <h3 data-bind="text: name"></h3>
+    <p>Credits: <span data-bind="text: credits"></span></p>
+</script>
+ 
+<script type="text/javascript">
+    function Contact() {
+        this.buyer = { 
+            name: ko.observable('Bob'), 
+            credits: ko.observable(250)
+        };
+        this.seller = {
+            name: ko.observable('Mario'), 
+            credits: ko.observable(5800)
+        };
+    }
+
+    var contact = new Contact()
+    ko.applyBindings(contact, $('#contact').get(0) );
+
+    
+</script>
+
+</body>
+</html>
