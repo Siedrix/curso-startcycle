@@ -28,13 +28,13 @@
             });
         });
 
-        app.get('#/r/:subreddit', function(e){
+        app.get('#/r/:subreddit/', function(e){
             console.log('subreddit', e.params.subreddit)
 
             reddit.subreddit(e.params.subreddit);
         });
 
-        app.get(/\/#\/r/, function(e){
+        app.get(/#\/r\/[\w]+\/comments/, function(e){
             var dfd = reddit.thread(e.path.replace('/#',''));
 
             dfd.done(function(threadData){
@@ -48,7 +48,7 @@
             });
         });
 
-        app.run('/#');
+        app.run('/#/');
         window.app = app;
     });
     </script>
