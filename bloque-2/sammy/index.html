@@ -20,7 +20,8 @@
 
             dfd.done(function(homePage){
                 var home = {
-                    post :homePage.data.children.map(function(children){return children.data})
+                    title : 'Reddit',
+                    post  : homePage.data.children.map(function(children){return children.data})
                 };
                 
                 console.log('home', home);
@@ -31,7 +32,16 @@
         app.get('#/r/:subreddit/', function(e){
             console.log('subreddit', e.params.subreddit)
 
-            reddit.subreddit(e.params.subreddit);
+            var dfd = reddit.subreddit(e.params.subreddit);
+
+            dfd.done(function(subreddit){
+                var data = {
+                    title : e.params.subreddit,
+                    post  : subreddit.data.children.map(function(children){return children.data})
+                }
+
+                $('#main').html( $.tmpl( "home", data ) ); 
+            });
         });
 
         app.get(/#\/r\/[\w]+\/comments/, function(e){
@@ -57,11 +67,11 @@
 <div id="main"></div>
 <script id="home-template" type="text/jquery-template">
 <div>
-    <h2>Home</h2>
+    <h2>${title}</h2>
     {{each( index, post ) post}}
     <div>
         <h4 ><a href="#${post.permalink}">${post.title}</a></h4>
-        <p>En <a href="#/r/${post.subreddit}">${post.subreddit}</a>, por <span>${post.author}</span></p>
+        <p>En <a href="#/r/${post.subreddit}/">${post.subreddit}</a>, por <span>${post.author}</span></p>
     </div>
     {{/each}}
 </div>
