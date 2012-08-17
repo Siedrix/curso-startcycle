@@ -32,7 +32,7 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 - [SCALING YOUR JAVASCRIPT APPLICATION](http://addyosmani.com/scalable-javascript-videos/)
 - [TodoMVC](http://addyosmani.github.com/todomvc/)
 
-### Clase 6:
+### Clase 6: BackboneJs
 
 - [Backbone.js: Hacker's Guide](http://dailyjs.com/2012/07/19/mvstar-2/)
 - [Backbone.js](http://backbonejs.org/)
@@ -40,8 +40,13 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 - [Javascript Jabber with Jeremy Ashkenas](http://javascriptjabber.com/004-jsj-backbone-js-with-jeremy-ashkenas/)
 - [Backbone Boilerplate](https://github.com/tbranyen/backbone-boilerplate)
 
-### Clase 7:
+### Clase 7: KnockoutJs
 
 - [Knockoutjs Documentation](http://knockoutjs.com/documentation/introduction.html)
 - [Knockoutjs Learn](http://learn.knockoutjs.com/)
+- [KnockBackjs](http://kmalakoff.github.com/knockback/)
+
+### Clase 8: SammyJs
+
+- [SammyJs](http://sammyjs.org/)
 

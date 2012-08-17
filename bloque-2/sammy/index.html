@@ -1,0 +1,82 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>The JSON Store</title>
+    <script src="/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/sammy.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/reddit.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $.template( "home"   , $('#home-template').html()   );
+        $.template( "thread" , $('#thread-template').html() );
+
+        var app = new Sammy();
+
+        app.get('#/', function (e) {
+            console.log('index');
+
+            var dfd = reddit.home();
+
+            dfd.done(function(homePage){
+                var home = {
+                    post :homePage.data.children.map(function(children){return children.data})
+                };
+                
+                console.log('home', home);
+                $('#main').html( $.tmpl( "home", home ) );
+            });
+        });
+
+        app.get('#/r/:subreddit', function(e){
+            console.log('subreddit', e.params.subreddit)
+
+            reddit.subreddit(e.params.subreddit);
+        });
+
+        app.get(/\/#\/r/, function(e){
+            var dfd = reddit.thread(e.path.replace('/#',''));
+
+            dfd.done(function(threadData){
+                var thread = {
+                    threadInfo : threadData[0].data.children[0].data,
+                    comments   : threadData[1].data.children.map(function(thread){return thread.data})
+                }
+
+                console.log('thread', thread);
+                $('#main').html( $.tmpl( "thread", thread ) );
+            });
+        });
+
+        app.run('/#');
+        window.app = app;
+    });
+    </script>
+</head>
+<body>
+<div id="main"></div>
+<script id="home-template" type="text/jquery-template">
+<div>
+    <h2>Home</h2>
+    {{each( index, post ) post}}
+    <div>
+        <h4 ><a href="#${post.permalink}">${post.title}</a></h4>
+        <p>En <a href="#/r/${post.subreddit}">${post.subreddit}</a>, por <span>${post.author}</span></p>
+    </div>
+    {{/each}}
+</div>
+</script>
+<script id="thread-template" type="text/jquery-template">
+<div>
+    <h2>${ threadInfo.title }</h2>
+    {{each( index, comment ) comments}}
+    <div>
+        <p>${comment.body}</p>
+        <p>por <span>${comment.author}</span></p>
+    </div>
+    {{/each}}
+</div>
+</script>
+
+</body>
+</html>
