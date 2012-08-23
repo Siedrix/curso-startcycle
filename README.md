@@ -50,3 +50,8 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 
 - [SammyJs](http://sammyjs.org/)
 
+#### Intermedio 2: TDD & Refactoring
+
+- [Jasmine](http://pivotal.github.com/jasmine/)
+- [What killed Smalltalk...](http://www.youtube.com/watch?v=YX3iRjKj7C0#t=26m10s)
+- [Agile techniques](http://www.infoq.com/presentations/principles-agile-oo-design)
