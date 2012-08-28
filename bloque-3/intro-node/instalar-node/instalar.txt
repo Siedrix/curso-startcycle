@@ -1,0 +1,43 @@
+Windows
+Paso 1: Ir a <a href="http://nodejs.org/#download">http://nodejs.org/#download</a>
+Paso 2: Descargar el archivo para su sistema operativo
+Paso 3: Instalar NodeJs
+Paso 4: Buscar y abrir Node Command Prompt
+
+Mac
+Paso 1: Ir a <a href="http://nodejs.org/#download">http://nodejs.org/#download</a>
+Paso 2: Descargar el archivo para su sistema operativo
+Paso 3: Instalar NodeJs
+Paso 4: Abrir una terminal
+
+Tambien pueden usar brew
+	brew install node
+
+Ubuntu
+Paso 1: Abrir la terminal
+Paso 2: Instalar dependencias
+	sudo apt-get install build-essential git-core libssl-dev libssl0.9.8
+Paso 3: Descargar Node( con git)
+	git clone git://github.com/joyent/node
+Paso 4: Pasar a NodeJs 0.8.4
+	git checkout v0.8.4 
+Paso 5: Compilar e instalar NodeJs
+	./configure
+	make 
+	sudo make install
+
+Probar node
+	node -v
+	npm -v
+
+Crear un archivo con:
+	var http = require('http');
+	http.createServer(function (req, res) {
+	  res.writeHead(200, {'Content-Type': 'text/plain'});
+	  res.end('Hello World\n');
+	}).listen(1337, '127.0.0.1');
+	console.log('Server running at http://127.0.0.1:1337/');
+
+En la terminal buscar el archivo y correr node [nombre de su archivo], ir a http://127.0.0.1:1337/
+
+
