@@ -2,6 +2,8 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 
 #Materiales
 
+##Bloque 1
+
 ### Clase 1: lose fear to code:
 
 - [Paul Irish : 10 Things I Learned from the jQuery Source](http://vimeo.com/12529436#at=0)
@@ -26,6 +28,8 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 ### Clase 4
 
 - [The jQuery Divide by Rebecca Murphey](http://jsconf.eu/2010/speaker/the_jquery_divide_by_rebecca_m.html)
+
+##Bloque 2 Mv*'s
 
 ### Clase 5:
 
@@ -55,3 +59,18 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 - [Jasmine](http://pivotal.github.com/jasmine/)
 - [What killed Smalltalk...](http://www.youtube.com/watch?v=YX3iRjKj7C0#t=26m10s)
 - [Agile techniques](http://www.infoq.com/presentations/principles-agile-oo-design)
+
+##Bloque 3 Node
+
+### Clase 9 Intro a node
+
+- [Introduction to Node.js with Ryan Dahl](http://www.youtube.com/watch?v=jo_B4LTHi3I)
+- [Ryan Dahl - History of Node.js](http://www.youtube.com/watch?v=SAc0vQCC6UQ)
+
+### Clase 10 Real apps
+
+- [Package.json cheatsheet](http://package.json.nodejitsu.com/)
+- [Express Api](http://expressjs.com/api.html)
+- [Faye](http://faye.jcoglan.com/)
+- [Server-side jQuery Templates](https://github.com/kof/node-jqtpl)
+- [Consolidate](https://github.com/visionmedia/consolidate.js)
