@@ -74,3 +74,11 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 - [Faye](http://faye.jcoglan.com/)
 - [Server-side jQuery Templates](https://github.com/kof/node-jqtpl)
 - [Consolidate](https://github.com/visionmedia/consolidate.js)
+
+### Clase 11 Persistencia en el server
+
+- [Creando librerias que funcionen en Nodejs y el browser](http://siedrix.com/creando-librerias-que-funcionen-en-nodejs-y-el-browser)
+- [Scaling Isomorphic Javascript Code](http://blog.nodejitsu.com/scaling-isomorphic-javascript-code)
+- [Resource Reflection in Flatiron](http://blog.nodejitsu.com/resource-reflection-in-flatiron)
+
+
