@@ -17,6 +17,11 @@ var Grid = function(columns, rows) {
                 console.log($(this).attr('x'), $(this).attr('y'));
 
                 //Notify code goes here;
+                client.publish('/messages', {
+                    x: $(this).attr('x'),
+                    y: $(this).attr('y'),
+                    color : $('input').val()                    
+                });
 
                 $(this).css('background', $('input').val() );
             });

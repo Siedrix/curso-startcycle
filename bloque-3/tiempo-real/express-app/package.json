@@ -3,7 +3,7 @@
 	"version" : "0.0.1",
 	"dependencies": {
 		"express"  : "*",
-		"jqtpl"    : "*",
+		"jqtpl"    : "1.1.x",
 		"consolidate" : "*"
 	}
 }
