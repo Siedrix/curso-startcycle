@@ -2,7 +2,7 @@
 <head>
 	<script type="text/javascript">
 		// http://benalman.com/news/2010/11/immediately-invoked-function-expression/
-		var contador = !function(valorInicial){
+		var contador = (function(valorInicial){
 			var valor = valorInicial || 0;
 
 			return {
@@ -13,7 +13,7 @@
 					return valor;
 				}
 			}
-		}(10);
+		})(10);
 
 		console.log('valor inicial',contador.resultado());
 		contador.sumar(6);

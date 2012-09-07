@@ -82,4 +82,6 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 - [Resource Reflection in Flatiron](http://blog.nodejitsu.com/resource-reflection-in-flatiron)
 - [Re-using Backbone.js Models on the server with Node.js and Socket.io to build real-time apps](http://andyet.net/blog/2011/feb/15/re-using-backbonejs-models-on-the-server-with-node/)
 
+## Extras
 
+- [An Open Letter to JavaScript Leaders Regarding Semicolons](http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding)

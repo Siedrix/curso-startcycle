@@ -4,7 +4,7 @@ $(document).ready(function () {
 	grid.initMatrix(gridData);
 	grid.render($('#grid'));
 
-	window.client = new Faye.Client('http://localhost:3000/faye');
+	window.client = new Faye.Client('http://192.168.1.131:3000/faye');
 
 	client.subscribe('/messages', function(message) {
 		console.log(message);
