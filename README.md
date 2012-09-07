@@ -80,5 +80,6 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 - [Creando librerias que funcionen en Nodejs y el browser](http://siedrix.com/creando-librerias-que-funcionen-en-nodejs-y-el-browser)
 - [Scaling Isomorphic Javascript Code](http://blog.nodejitsu.com/scaling-isomorphic-javascript-code)
 - [Resource Reflection in Flatiron](http://blog.nodejitsu.com/resource-reflection-in-flatiron)
+- [Re-using Backbone.js Models on the server with Node.js and Socket.io to build real-time apps](http://andyet.net/blog/2011/feb/15/re-using-backbonejs-models-on-the-server-with-node/)
 
 
