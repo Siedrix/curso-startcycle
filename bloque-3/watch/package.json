@@ -1,0 +1,10 @@
+{
+	"name" : "grid-app",
+	"version" : "0.0.1",
+	"dependencies": {
+		"express"  : "*",
+		"jqtpl"    : "*",
+		"consolidate" : "*",
+		"faye"     : "*"
+	}
+}
