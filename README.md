@@ -56,7 +56,7 @@ Para informacion del curso chequen [la pagina oficial del curso](http://www.star
 
 #### Intermedio 2: TDD & Refactoring
 
-- [Jasmine](http://pivotal.github.com/jasmine/)
+- [Jasmine](https://jasmine.github.io/)
 - [What killed Smalltalk...](http://www.youtube.com/watch?v=YX3iRjKj7C0#t=26m10s)
 - [Agile techniques](http://www.infoq.com/presentations/principles-agile-oo-design)
 
